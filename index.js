@@ -2,7 +2,6 @@ let express = require("express");
 let cors = require("cors");
 const { JSDOM } = require("jsdom");
 require('dotenv').config()
-console.log(process.env) // remove this after you've confirmed it is working
 const path = require("path");
 let app = express();
 app.use(cors());
@@ -40,8 +39,9 @@ async function main() {
 
         // Fetch all components
         const components = await collection.find({}).toArray();
-        console.log("All components:", components);
-        elementsData = [...components];
+        // console.log("All components:", components);
+        // elementsData = [...components];
+        console.log("passed in the db connection")
 
         // Insert a new component (example)
         // await collection.insertOne({
@@ -57,6 +57,8 @@ async function main() {
         await client.close();
     }
 }
+
+main();
 
 
 
@@ -154,7 +156,7 @@ async function addServerData(serverData) {
     } catch (error) {
         console.log("Error inserting data into database");
         console.log(error);
-        return null;
+        return JSON.stringify(error);
     } finally {
         await client.close(); // close connection if you don't need it open
     }
@@ -388,6 +390,11 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
 
         // res.status(200).send("Component uploaded successfully!");
         addServerData(serverData).then(result => {
+
+            if(typeof result == String){
+                res.status(501).send(result);
+            }
+
             if (result.acknowledged) {
                 res.status(200).send("Component uploaded successfully!");
             }
