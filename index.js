@@ -399,7 +399,7 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
                 res.status(200).send("Component uploaded successfully!");
             }
             else {
-                res.status(500).send("Server error while uploading component.");
+                res.status(500).send("Server error while uploading component."+JSON.stringify(result));
             }
         }).catch((err) => {
             res.status(500).send("Server error while uploading component." + JSON.stringify(err));
