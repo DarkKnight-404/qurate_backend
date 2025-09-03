@@ -7,7 +7,7 @@ let app = express();
 app.use(cors());
 
 
-app.use(express.static("Public"));
+app.use(express.static("public"));
 
 
 
