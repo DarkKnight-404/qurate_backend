@@ -7,6 +7,9 @@ let app = express();
 app.use(cors());
 
 
+app.use(express.static("Public"));
+
+
 
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -19,7 +22,6 @@ const client = new MongoClient(uri, {
         deprecationErrors: true,
     }
 });
-
 let elementsData = [
 
 
@@ -401,9 +403,11 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
 });
 
 
+const path = require("path");
+
 app.get("/editor", (req, res) => {
-    res.sendFile("/editor.html");
-})
+  res.sendFile(path.join(__dirname, "editor.html"));
+});
 
 
 
