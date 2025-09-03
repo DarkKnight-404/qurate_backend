@@ -402,7 +402,7 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
 
 
 app.get("/editor", (req, res) => {
-    res.sendFile("E:\\PBL 3\\backend\\editor.html");
+    res.sendFile("/editor.html");
 })
 
 
