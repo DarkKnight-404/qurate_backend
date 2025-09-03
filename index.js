@@ -3,11 +3,12 @@ let cors = require("cors");
 const { JSDOM } = require("jsdom");
 require('dotenv').config()
 console.log(process.env) // remove this after you've confirmed it is working
+const path = require("path");
 let app = express();
 app.use(cors());
 
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 
@@ -403,7 +404,6 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
 });
 
 
-const path = require("path");
 
 app.get("/editor", (req, res) => {
   res.sendFile(path.join(__dirname, "editor.html"));
