@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'Public')));
 
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://pshychicexcusealpha_db_user:wl1NBOBNGFtUd3Ce@cluster0.bxw9ggf.mongodb.net/websiteBuilder?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "mongodb+srv://pshychicexcusealpha_db_user:wl1NBOBNGFtUd3Ce@cluster0.bxw9ggf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
     serverApi: {
@@ -59,6 +59,63 @@ async function main() {
 }
 
 main();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const uri = "mongodb+srv://pshychicexcusealpha_db_user:<db_password>@cluster0.bxw9ggf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+
+
+async function run() {
+    try {
+        // Connect the client to the server	(optional starting in v4.7)
+        await client.connect();
+        // Send a ping to confirm a successful connection
+        await client.db("admin").command({ ping: 1 });
+        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+        return true;
+    }
+    catch (e) {
+        return false;
+    }
+    finally {
+        // Ensures that the client will close when you finish/error
+        await client.close();
+    }
+}
+run().catch(console.dir);
+
+app.get("/testconn", (req, res) => {
+    run().then(val => {
+        res.send(val ? "<h1>Test Cleared</h1>" : "<h1>There is an error</h1>")
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -391,7 +448,7 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
         // res.status(200).send("Component uploaded successfully!");
         addServerData(serverData).then(result => {
 
-            if(typeof result == String){
+            if (typeof result == String) {
                 res.status(501).send(result);
             }
 
@@ -399,7 +456,7 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
                 res.status(200).send("Component uploaded successfully!");
             }
             else {
-                res.status(500).send("Server error while uploading component."+JSON.stringify(result));
+                res.status(500).send("Server error while uploading component." + JSON.stringify(result));
             }
         }).catch((err) => {
             res.status(500).send("Server error while uploading component." + JSON.stringify(err));
@@ -413,7 +470,7 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
 
 
 app.get("/editor", (req, res) => {
-  res.sendFile(path.join(__dirname, "editor.html"));
+    res.sendFile(path.join(__dirname, "editor.html"));
 });
 
 
