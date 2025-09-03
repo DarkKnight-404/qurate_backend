@@ -1,0 +1,1028 @@
+[
+    {
+        "name": "Classic Clean",
+        "id": "_0000",
+        "img": "ClassicClean.png",
+        "style": "{ .hero-image { background-image: url('HeroSectionImage.jpg'); background-size: cover; background-position: center; height: 400px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; } .hero-text { text-align: center; color: white; padding: 20px; z-index: 2; } .hero-title { font-size: 2.5rem; margin-bottom: 10px; font-weight: bold; } .hero-subtitle { font-size: 1.2rem; margin-bottom: 20px; opacity: 0.9; } .hero-button { background-color: #ff5733; color: white; border: none; padding: 10px 20px; font-size: 1rem; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; } .hero-button:hover { background-color: #e04d2b; } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "hero_image",
+                "classNames": "production_container hero-image",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_text",
+                        "classNames": "production_container hero-text",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "production_container hero-title",
+                                "innerText": "Welcome To Prometheus",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "id": "hero_subtitle",
+                                "classNames": "production_container hero-subtitle",
+                                "innerText": "Drag and Drop solution for your own sites",
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "production_container hero-button",
+                                "innerText": "start",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Minimal Gradient",
+        "id": "_0001",
+        "img": "MinimalGradient.png",
+        "style": "{ .hero-image { background: linear-gradient(to bottom right, #2b5876, #4e4376); height: 100vh; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; } .hero-text { background: rgba(255, 255, 255, 0.15); padding: 30px 50px; border-radius: 20px; backdrop-filter: blur(8px); text-align: center; color: white; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); } .hero-title { font-family: 'Poppins', sans-serif; font-size: 3rem; margin-bottom: 15px; letter-spacing: 1px; } .hero-subtitle { font-family: 'Roboto', sans-serif; font-size: 1.2rem; margin-bottom: 25px; font-weight: 300; } .hero-button { padding: 12px 25px; font-size: 1rem; font-weight: 500; color: white; background: linear-gradient(135deg, #ff512f, #dd2476); border: none; border-radius: 50px; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; } .hero-button:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 81, 47, 0.4); } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "hero_image",
+                "classNames": "production_container hero-image",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_text",
+                        "classNames": "production_container hero-text",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "production_container hero-title",
+                                "innerText": "Welcome To Prometheus",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "id": "hero_subtitle",
+                                "classNames": "production_container hero-subtitle",
+                                "innerText": "Drag and Drop solution for your own sites",
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "production_container hero-button",
+                                "innerText": "start",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Bold Overlay",
+        "id": "_0002",
+        "img": "BoldOverlay.png",
+        "style": "{ .hero-image { background-image: url('HeroSectionImage.jpg'); background-size: cover; background-position: center; height: 450px; display: flex; align-items: flex-start; justify-content: flex-start; padding: 50px; position: relative; } .hero-text { text-align: left; color: #222; background: rgba(255, 255, 255, 0.8); padding: 20px 30px; border-radius: 10px; } .hero-title { font-size: 2.8rem; font-weight: 700; color: #111; } .hero-subtitle { font-size: 1.1rem; margin-bottom: 15px; color: #333; } .hero-button { background-color: #0077cc; color: white; padding: 10px 25px; border: none; border-radius: 6px; cursor: pointer; transition: background 0.3s ease; } .hero-button:hover { background-color: #005fa3; } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "hero_image",
+                "classNames": "production_container hero-image",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_text",
+                        "classNames": "production_container hero-text",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "production_container hero-title",
+                                "innerText": "Welcome To Prometheus",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "id": "hero_subtitle",
+                                "classNames": "production_container hero-subtitle",
+                                "innerText": "Drag and Drop solution for your own sites",
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "production_container hero-button",
+                                "innerText": "start",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Frosted Glass",
+        "id": "_0003",
+        "img": "FosterGlass.png",
+        "style": "{ .hero-image { background: radial-gradient(circle at center, #ffecd2 0%, #fcb69f 100%); height: 400px; display: flex; align-items: center; justify-content: center; } .hero-text { text-align: center; color: #444; } .hero-title { font-size: 3rem; font-weight: 900; background: linear-gradient(90deg, #ff512f, #dd2476); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } .hero-subtitle { font-size: 1.2rem; color: #555; } .hero-button { background-color: white; color: #ff512f; padding: 12px 30px; border: 2px solid #ff512f; border-radius: 30px; cursor: pointer; font-weight: bold; } .hero-button:hover { background-color: #ff512f; color: white; } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "hero_image",
+                "classNames": "production_container hero-image",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_text",
+                        "classNames": "production_container hero-text",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "production_container hero-title",
+                                "innerText": "Welcome To Prometheus",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "id": "hero_subtitle",
+                                "classNames": "production_container hero-subtitle",
+                                "innerText": "Drag and Drop solution for your own sites",
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "production_container hero-button",
+                                "innerText": "start",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Neon Glow",
+        "id": "_0005",
+        "img": "NeonGlow.png",
+        "style": "{ .hero-image { background-color: #0d1117; height: 450px; display: flex; align-items: center; justify-content: center; padding: 50px; position: relative; } .hero-text { text-align: center; color: #c9d1d9; background: rgba(20, 23, 28, 0.85); padding: 30px 40px; border-radius: 8px; border-left: 5px solid #58a6ff; } .hero-title { font-size: 2.7rem; font-weight: 700; margin-bottom: 15px; color: #ffffff; } .hero-subtitle { font-size: 1.2rem; margin-bottom: 25px; font-weight: 300; color: #9ba6b1; } .hero-button { background-color: #58a6ff; color: #0d1117; padding: 10px 25px; border: none; border-radius: 6px; cursor: pointer; transition: background 0.3s ease; } .hero-button:hover { background-color: #1f6feb; color: white; } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "hero_image",
+                "classNames": "production_container hero-image",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_text",
+                        "classNames": "production_container hero-text",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "production_container hero-title",
+                                "innerText": "Welcome To Prometheus",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "id": "hero_subtitle",
+                                "classNames": "production_container hero-subtitle",
+                                "innerText": "Drag and Drop solution for your own sites",
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "production_container hero-button",
+                                "innerText": "start",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Retro Gradient",
+        "id": "_0006",
+        "img": "RetroGradient.png",
+        "style": "{ .hero-image { background: url('https://picsum.photos/1600/900') center/cover no-repeat; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; } .hero-text { text-align: center; color: #fff; padding: 20px; background: rgba(0, 0, 0, 0.4); border-radius: 10px; } .hero-title { font-size: 3rem; font-weight: bold; margin-bottom: 15px; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6); } .hero-subtitle { font-size: 1.3rem; margin-bottom: 20px; opacity: 0.9; } .hero-button { background-color: rgba(255, 255, 255, 0.85); color: #000; padding: 12px 28px; border: none; border-radius: 50px; cursor: pointer; font-weight: 600; transition: background 0.3s ease; } .hero-button:hover { background-color: white; } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "hero_image",
+                "classNames": "production_container hero-image",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_text",
+                        "classNames": "production_container hero-text",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "production_container hero-title",
+                                "innerText": "Welcome To Prometheus",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "id": "hero_subtitle",
+                                "classNames": "production_container hero-subtitle",
+                                "innerText": "Drag and Drop solution for your own sites",
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "production_container hero-button",
+                                "innerText": "start",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Retro Gradient Banner",
+        "id": "_0007",
+        "img": "RetroGradientBanner.png",
+        "style": "{ .hero-image { background: linear-gradient(to right, #ff7e5f, #feb47b); height: 450px; display: flex; align-items: center; justify-content: flex-start; padding: 50px; } .hero-text { text-align: left; color: white; max-width: 500px; } .hero-title { font-size: 3rem; font-weight: bold; margin-bottom: 15px; } .hero-subtitle { font-size: 1.2rem; margin-bottom: 25px; } .hero-button { background-color: white; color: #ff7e5f; padding: 10px 25px; border: none; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; } .hero-button:hover { background-color: #ffe3d5; } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "hero_image",
+                "classNames": "production_container hero-image",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_text",
+                        "classNames": "production_container hero-text",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "production_container hero-title",
+                                "innerText": "Welcome To Prometheus",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "id": "hero_subtitle",
+                                "classNames": "production_container hero-subtitle",
+                                "innerText": "Drag and Drop solution for your own sites",
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "production_container hero-button",
+                                "innerText": "start",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Retro Gradient Card",
+        "id": "_0008",
+        "img": "RetroGradientCard",
+        "style": "{ .hero-image { background: radial-gradient(circle, #ff00cc, #333399); height: 450px; display: flex; align-items: center; justify-content: center; } .hero-text { text-align: center; color: #fff; padding: 20px; text-transform: uppercase; letter-spacing: 2px; } .hero-title { font-size: 3rem; font-weight: 900; margin-bottom: 10px; } .hero-subtitle { font-size: 1.1rem; margin-bottom: 20px; } .hero-button { background-color: #ff00cc; color: white; padding: 12px 30px; border: none; border-radius: 30px; cursor: pointer; transition: all 0.3s ease; } .hero-button:hover { background-color: #d100a8; transform: scale(1.05); } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "hero_image",
+                "classNames": "production_container hero-image",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_text",
+                        "classNames": "production_container hero-text",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "production_container hero-title",
+                                "innerText": "Welcome To Prometheus",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "id": "hero_subtitle",
+                                "classNames": "production_container hero-subtitle",
+                                "innerText": "Drag and Drop solution for your own sites",
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "production_container hero-button",
+                                "innerText": "start",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Dark Overlay Hero",
+        "id": "_0009",
+        "img": "DarkOverlayHero.png",
+        "style": "{ .hero-image { background: url('https://picsum.photos/1600/900?grayscale') center/cover no-repeat; height: 480px; display: flex; align-items: center; justify-content: center; position: relative; } .hero-image::after { content: \"\"; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); } .hero-text { position: relative; text-align: center; color: white; padding: 20px; } .hero-title { font-size: 3rem; font-weight: bold; margin-bottom: 15px; } .hero-subtitle { font-size: 1.2rem; margin-bottom: 20px; } .hero-button { background-color: #f39c12; color: white; padding: 12px 28px; border: none; border-radius: 6px; cursor: pointer; transition: background 0.3s ease; } .hero-button:hover { background-color: #d68910; } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "hero_image",
+                "classNames": "production_container hero-image",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_text",
+                        "classNames": "production_container hero-text",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "production_container hero-title",
+                                "innerText": "Welcome To Prometheus",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "id": "hero_subtitle",
+                                "classNames": "production_container hero-subtitle",
+                                "innerText": "Drag and Drop solution for your own sites",
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "production_container hero-button",
+                                "innerText": "start",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Centered Minimal Hero",
+        "id": "_0010",
+        "img": "CentralMinimalHero.png",
+        "style": "{ .hero-image { background-color: #f4f4f4; height: 400px; display: flex; align-items: center; justify-content: center; padding: 20px; } .hero-text { text-align: center; color: #222; max-width: 600px; } .hero-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; } .hero-subtitle { font-size: 1.1rem; margin-bottom: 20px; color: #555; } .hero-button { background-color: #0077cc; color: white; padding: 10px 22px; border: none; border-radius: 50px; cursor: pointer; transition: background 0.3s ease; } .hero-button:hover { background-color: #005fa3; } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "hero_image",
+                "classNames": "production_container hero-image",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_text",
+                        "classNames": "production_container hero-text",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "production_container hero-title",
+                                "innerText": "Welcome To Prometheus",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "id": "hero_subtitle",
+                                "classNames": "production_container hero-subtitle",
+                                "innerText": "Drag and Drop solution for your own sites",
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "production_container hero-button",
+                                "innerText": "start",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Retro Gradient Card (2)",
+        "id": "_0011",
+        "img": "RetroGradientCard2.png",
+        "style": "{ .hero-image { background: linear-gradient(135deg, #ff512f, #dd2476); height: 450px; display: flex; align-items: center; justify-content: flex-end; padding: 60px; } .hero-text { text-align: right; color: white; max-width: 500px; } .hero-title { font-size: 3rem; font-weight: 900; margin-bottom: 15px; } .hero-subtitle { font-size: 1.2rem; margin-bottom: 25px; } .hero-button { background-color: white; color: #dd2476; padding: 12px 28px; border: none; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; } .hero-button:hover { background-color: #ffd9ec; } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "hero_image",
+                "classNames": "production_container hero-image",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_text",
+                        "classNames": "production_container hero-text",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "production_container hero-title",
+                                "innerText": "Welcome To Prometheus",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "id": "hero_subtitle",
+                                "classNames": "production_container hero-subtitle",
+                                "innerText": "Drag and Drop solution for your own sites",
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "production_container hero-button",
+                                "innerText": "start",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Retro Gradient Card (2)",
+        "id": "_0012",
+        "img": "_0012.png",
+        "style": "{ .hero-image { background-image: url('https://via.placeholder.com/1920x1080'); background-size: cover; background-position: center; height: 100vh; display: flex; align-items: center; justify-content: center; color: white; position: relative; } .hero-image::after { /* Dark overlay for better text readability */ content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); } .hero-text { position: relative; text-align: center; z-index: 1; } .hero-title { font-size: 3rem; font-weight: bold; margin-bottom: 0.5em; } .hero-subtitle { font-size: 1.5rem; margin-bottom: 1.5em; } .hero-button { padding: 0.75em 1.5em; font-size: 1rem; background-color: #ff4d4d; border: none; color: white; cursor: pointer; border-radius: 4px; transition: background 0.3s ease; } .hero-button:hover { background-color: #e63939; } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "hero_image",
+                "classNames": "production_container hero-image",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_text",
+                        "classNames": "production_container hero-text",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "production_container hero-title",
+                                "innerText": "Welcome To Prometheus",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "id": "hero_subtitle",
+                                "classNames": "production_container hero-subtitle",
+                                "innerText": "Drag and Drop solution for your own sites",
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "production_container hero-button",
+                                "innerText": "start",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Type 2",
+        "id": "_0013",
+        "img": "_0013.png",
+        "style": "{ .hero { display: flex; align-items: center; justify-content: space-between; padding: 60px; background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); color: white; } .hero-content { max-width: 50%; } .hero-content h1 { font-size: 3rem; margin-bottom: 20px; } .hero-content p { font-size: 1.2rem; margin-bottom: 30px; } .hero-content button { padding: 12px 24px; border: none; background: white; color: #2575fc; font-size: 1rem; cursor: pointer; border-radius: 5px; transition: 0.3s; } .hero-content button:hover { background: #eee; } .hero-image img { max-width: 400px; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); } @media (max-width: 768px) { .hero { flex-direction: column; text-align: center; } .hero-content { max-width: 100%; margin-bottom: 30px; } } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "classNames": "production_container hero",
+                "id": "hero_section",
+                "children": [
+                    {
+                        "tag": "div",
+                        "classNames": "production_container hero-content",
+                        "id": "hero_content",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "classNames": "production_container",
+                                "id": "hero_header",
+                                "innerText": "Revolutionize Your Workflow",
+                                "attributes": {
+                                    "contenteditable": "true",
+                                    "onclick": "window.parent.postMessage({index: ${this.index}, location: \"herosection:hero_header\", option: \"setactiveelement\"})"
+                                },
+                                "children": []
+                            },
+                            {
+                                "tag": "p",
+                                "classNames": "production_container",
+                                "id": "hero_para",
+                                "innerText": "Boost productivity with our all-in-one solution. Seamless integration, powerful features, and intuitive design.",
+                                "attributes": {
+                                    "contenteditable": "true",
+                                    "onclick": "window.parent.postMessage({index: ${this.index}, location: \"herosection:hero_para\", option: \"setactiveelement\"})"
+                                },
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "classNames": "production_container",
+                                "id": "hero_button",
+                                "innerText": "Get Started",
+                                "attributes": {
+                                    "onclick": "window.parent.postMessage({index: ${this.index}, location: \"herosection:hero_button\", option: \"setactiveelement\"})"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "tag": "div",
+                        "classNames": "production_container hero-image",
+                        "id": "hero_image_div",
+                        "children": [
+                            {
+                                "tag": "img",
+                                "id": "hero_image",
+                                "src": "Components//UiImage.png",
+                                "alt": "Product Preview",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Type 2",
+        "id": "_0014",
+        "img": "_0014.png",
+        "style": "{ .hero { display: flex; align-items: center; justify-content: space-between; padding: 4rem; background: linear-gradient(120deg, #d9a7c7, #fffcdc); min-height: 100vh; box-sizing: border-box; gap: 3rem; } .hero-content { flex: 1; background: rgba(255, 255, 255, 0.25); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px); box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.15); color: #333; } .hero-content h1 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700; } .hero-content p { font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6; } .hero-content button { background-color: #ff6b6b; color: white; padding: 0.8rem 2rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: transform 0.3s ease, background-color 0.3s ease; } .hero-content button:hover { transform: scale(1.05); background-color: #e74c3c; } .hero-image { flex: 1; display: flex; justify-content: center; align-items: center; } .hero-image img { width: 90%; max-width: 500px; border-radius: 20px; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2); transition: transform 0.4s ease; } .hero-image img:hover { transform: rotate(2deg) scale(1.03); } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "classNames": "production_container hero",
+                "id": "hero_section",
+                "children": [
+                    {
+                        "tag": "div",
+                        "classNames": "production_container hero-content",
+                        "id": "hero_content",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "classNames": "production_container",
+                                "id": "hero_header",
+                                "innerText": "Revolutionize Your Workflow",
+                                "attributes": {
+                                    "contenteditable": "true",
+                                    "onclick": "window.parent.postMessage({index: ${this.index}, location: \"herosection:hero_header\", option: \"setactiveelement\"})"
+                                },
+                                "children": []
+                            },
+                            {
+                                "tag": "p",
+                                "classNames": "production_container",
+                                "id": "hero_para",
+                                "innerText": "Boost productivity with our all-in-one solution. Seamless integration, powerful features, and intuitive design.",
+                                "attributes": {
+                                    "contenteditable": "true",
+                                    "onclick": "window.parent.postMessage({index: ${this.index}, location: \"herosection:hero_para\", option: \"setactiveelement\"})"
+                                },
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "classNames": "production_container",
+                                "id": "hero_button",
+                                "innerText": "Get Started",
+                                "attributes": {
+                                    "onclick": "window.parent.postMessage({index: ${this.index}, location: \"herosection:hero_button\", option: \"setactiveelement\"})"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "tag": "div",
+                        "classNames": "production_container hero-image",
+                        "id": "hero_image_div",
+                        "children": [
+                            {
+                                "tag": "img",
+                                "id": "hero_image",
+                                "src": "Components//UiImage.png",
+                                "alt": "Product Preview",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Type 2",
+        "id": "_0015",
+        "img": "_0015.png",
+        "style": "{ .hero { display: flex; align-items: center; justify-content: space-between; padding: 4rem; min-height: 100vh; background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: white; font-family: \"Segoe UI\", sans-serif; } .hero-content { max-width: 50%; background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 16px; backdrop-filter: blur(10px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); } .hero-content h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: bold; } .hero-content p { font-size: 1.2rem; line-height: 1.6; } .hero img { max-width: 40%; border-radius: 16px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); transition: transform 0.3s ease; } .hero img:hover { transform: scale(1.05) rotate(2deg); } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "classNames": "production_container hero",
+                "id": "hero_section",
+                "children": [
+                    {
+                        "tag": "div",
+                        "classNames": "production_container hero-content",
+                        "id": "hero_content",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "classNames": "production_container",
+                                "id": "hero_header",
+                                "innerText": "Revolutionize Your Workflow",
+                                "attributes": {
+                                    "contenteditable": "true",
+                                    "onclick": "window.parent.postMessage({index: ${this.index}, location: \"herosection:hero_header\", option: \"setactiveelement\"})"
+                                },
+                                "children": []
+                            },
+                            {
+                                "tag": "p",
+                                "classNames": "production_container",
+                                "id": "hero_para",
+                                "innerText": "Boost productivity with our all-in-one solution. Seamless integration, powerful features, and intuitive design.",
+                                "attributes": {
+                                    "contenteditable": "true",
+                                    "onclick": "window.parent.postMessage({index: ${this.index}, location: \"herosection:hero_para\", option: \"setactiveelement\"})"
+                                },
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "classNames": "production_container",
+                                "id": "hero_button",
+                                "innerText": "Get Started",
+                                "attributes": {
+                                    "onclick": "window.parent.postMessage({index: ${this.index}, location: \"herosection:hero_button\", option: \"setactiveelement\"})"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "tag": "div",
+                        "classNames": "production_container hero-image",
+                        "id": "hero_image_div",
+                        "children": [
+                            {
+                                "tag": "img",
+                                "id": "hero_image",
+                                "src": "Components//UiImage.png",
+                                "alt": "Product Preview",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Type 2",
+        "id": "_0016",
+        "img": "_0016.png",
+        "style": "{ .hero { display: flex; justify-content: space-between; align-items: center; min-height: 90vh; padding: 60px; background: linear-gradient(120deg, #fdfbfb, #ebedee); font-family: \"Poppins\", sans-serif; } .hero-content { max-width: 500px; } .hero-content h1 { font-size: 3.2rem; font-weight: 700; color: #2a2a2a; margin-bottom: 20px; } .hero-content p { font-size: 1.2rem; line-height: 1.7; color: #555; margin-bottom: 25px; } .hero-content .btn { padding: 12px 28px; font-size: 1.1rem; background: #ff6f61; color: white; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s ease; } .hero-content .btn:hover { background: #ff4b3e; } .hero-image img { max-width: 420px; transform: rotate(-5deg) scale(1.05); border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.15); transition: transform 0.3s ease; } .hero-image img:hover { transform: rotate(0deg) scale(1.08); } }",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "classNames": "production_container hero",
+                "id": "hero_section",
+                "children": [
+                    {
+                        "tag": "div",
+                        "classNames": "production_container hero-content",
+                        "id": "hero_content",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "classNames": "production_container",
+                                "id": "hero_header",
+                                "innerText": "Revolutionize Your Workflow",
+                                "attributes": {
+                                    "contenteditable": "true",
+                                    "onclick": "window.parent.postMessage({index: ${this.index}, location: \"herosection:hero_header\", option: \"setactiveelement\"})"
+                                },
+                                "children": []
+                            },
+                            {
+                                "tag": "p",
+                                "classNames": "production_container",
+                                "id": "hero_para",
+                                "innerText": "Boost productivity with our all-in-one solution. Seamless integration, powerful features, and intuitive design.",
+                                "attributes": {
+                                    "contenteditable": "true",
+                                    "onclick": "window.parent.postMessage({index: ${this.index}, location: \"herosection:hero_para\", option: \"setactiveelement\"})"
+                                },
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "classNames": "production_container",
+                                "id": "hero_button",
+                                "innerText": "Get Started",
+                                "attributes": {
+                                    "onclick": "window.parent.postMessage({index: ${this.index}, location: \"herosection:hero_button\", option: \"setactiveelement\"})"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "tag": "div",
+                        "classNames": "production_container hero-image",
+                        "id": "hero_image_div",
+                        "children": [
+                            {
+                                "tag": "img",
+                                "id": "hero_image",
+                                "src": "Components//UiImage.png",
+                                "alt": "Product Preview",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Type 3",
+        "id": "_0017",
+        "img": "_0017.png",
+        "style": "{ .hero { display: flex; min-height: 90vh; align-items: center; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 0 5%; position: relative; overflow: hidden; } /* Hero content */ .hero-content { flex: 1; max-width: 600px; padding: 2rem 0; z-index: 2; } .hero-title { font-size: 3.5rem; font-weight: 800; color: #2c3e50; margin-bottom: 1.5rem; line-height: 1.2; } .hero-subtitle { font-size: 1.2rem; color: #4a5568; margin-bottom: 2.5rem; line-height: 1.6; } .hero-button { background: #4f46e5; color: white; border: none; padding: 0.8rem 2rem; font-size: 1rem; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; } .hero-button:hover { background: #4338ca; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); } /* Hero image */ .hero-image { flex: 1; display: flex; justify-content: center; align-items: center; z-index: 1; } .hero-image img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); animation: float 6s ease-in-out infinite; } /* Floating animation */ @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } } /* Responsive design */ @media (max-width: 768px) { .hero { flex-direction: column; text-align: center; padding: 4rem 5%; } .hero-content { max-width: 100%; margin-bottom: 3rem; } .hero-title { font-size: 2.5rem; } .hero-image img { max-width: 80%; } } }",
+        "htmlMap": [
+            {
+                "tag": "section",
+                "id": "hero_section",
+                "classNames": "hero",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "hero_content",
+                        "classNames": "hero-content",
+                        "children": [
+                            {
+                                "tag": "h1",
+                                "id": "hero_title",
+                                "classNames": "hero-title",
+                                "innerText": "Revolutionize Your Workflow",
+                                "attributes": {
+                                    "contenteditable": "true"
+                                },
+                                "children": []
+                            },
+                            {
+                                "tag": "p",
+                                "id": "hero_subtitle",
+                                "classNames": "hero-subtitle",
+                                "innerText": "Boost productivity with our all-in-one solution. Seamless integration, powerful features, and intuitive design.",
+                                "attributes": {
+                                    "contenteditable": "true"
+                                },
+                                "children": []
+                            },
+                            {
+                                "tag": "button",
+                                "id": "hero_button",
+                                "classNames": "hero-button",
+                                "innerText": "Get Started",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "tag": "div",
+                        "id": "hero_image_div",
+                        "classNames": "hero-image",
+                        "children": [
+                            {
+                                "tag": "img",
+                                "id": "hero_image",
+                                "src": "Components//UiImage.png",
+                                "attributes": {
+                                    "alt": "Product Preview"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Type 3",
+        "id": "_0018",
+        "img": "_0018.png",
+        "style": "{ .hero-container { background: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb') center/cover; min-height: 100vh; display: flex; align-items: center; margin: 0 auto; padding: 2rem; width: 100%; } .hero-card { background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.18); padding: 4rem; max-width: 800px; color: white; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); } .hero-badge { display: inline-block; background: rgba(255, 255, 255, 0.2); padding: 0.5rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 600; } .hero-title { font-size: 3.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 1.5rem; } .hero-description { font-size: 1.2rem; line-height: 1.6; margin-bottom: 2.5rem; opacity: 0.9; } .hero-cta { display: flex; gap: 1rem; } .primary-btn { background: var(--primary); color: white; border: none; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; } .secondary-btn { background: transparent; color: white; border: 2px solid rgba(255, 255, 255, 0.3); padding: 1rem 2rem; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; } .primary-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); } .secondary-btn:hover { background: rgba(255, 255, 255, 0.1); } @media (max-width: 768px) { .hero-card { padding: 2rem; } .hero-title { font-size: 2.5rem; } .hero-cta { flex-direction: column; } } }",
+        "htmlMap": [
+            {
+                "tag": "section",
+                "id": "glass_hero",
+                "classNames": "hero-container",
+                "children": [
+                    {
+                        "tag": "div",
+                        "classNames": "hero-card",
+                        "children": [
+                            {
+                                "tag": "span",
+                                "classNames": "hero-badge",
+                                "innerText": "NEW RELEASE",
+                                "children": []
+                            },
+                            {
+                                "tag": "h1",
+                                "id": "glass_hero_title",
+                                "classNames": "hero-title",
+                                "innerText": "Transform Your Digital Experience",
+                                "children": []
+                            },
+                            {
+                                "tag": "p",
+                                "id": "glass_hero_desc",
+                                "classNames": "hero-description",
+                                "innerText": "Discover our cutting-edge platform designed to elevate your productivity with AI-powered tools and seamless workflows.",
+                                "children": []
+                            },
+                            {
+                                "tag": "div",
+                                "classNames": "hero-cta",
+                                "children": [
+                                    {
+                                        "tag": "button",
+                                        "id": "primary_cta",
+                                        "classNames": "primary-btn",
+                                        "innerText": "Start Free Trial",
+                                        "children": []
+                                    },
+                                    {
+                                        "tag": "button",
+                                        "id": "secondary_cta",
+                                        "classNames": "secondary-btn",
+                                        "innerText": "View Demo",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    },
+    {
+        "name": "Type 4",
+        "id": "_0019",
+        "img": "_0018.png",
+        "style": "{ .intro-component {     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;     color: #333;     margin: 0;     padding: 0;     box-sizing: border-box;   }    .intro-container {     max-width: 1200px;     margin: 0 auto;     padding: 60px 20px;     display: flex;     flex-wrap: wrap;     align-items: center;     justify-content: space-between;     gap: 40px;   }    .intro-content {     flex: 1;     min-width: 300px;   }    .intro-title {     font-size: 2.5rem;     font-weight: 700;     line-height: 1.2;     margin-bottom: 20px;     color: #2c3e50;   }    .intro-text {     font-size: 1.1rem;     line-height: 1.6;     margin-bottom: 30px;     color: #555;   }    .intro-button {     background-color: #3498db;     color: white;     border: none;     padding: 12px 30px;     font-size: 1rem;     font-weight: 600;     border-radius: 30px;     cursor: pointer;     transition: all 0.3s ease;     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);   }    .intro-button:hover {     background-color: #2980b9;     transform: translateY(-2px);     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);   }    .intro-image {     flex: 1;     min-width: 300px;     border-radius: 10px;     overflow: hidden;     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);   }    .intro-image img {     width: 100%;     height: auto;     display: block;     transition: transform 0.5s ease;   }    .intro-image:hover img {     transform: scale(1.03);   }    @media (max-width: 768px) {     .intro-container {       flex-direction: column;       text-align: center;       padding: 40px 20px;     }          .intro-title {       font-size: 2rem;     }          .intro-content {       margin-bottom: 30px;     }   } }  ",
+        "htmlMap": [
+            {
+                "tag": "div",
+                "id": "intro_component",
+                "classNames": "production_container intro-component",
+                "innerText": "",
+                "children": [
+                    {
+                        "tag": "div",
+                        "id": "intro_container",
+                        "classNames": "production_container intro-container",
+                        "innerText": "",
+                        "children": [
+                            {
+                                "tag": "div",
+                                "id": "intro_content",
+                                "classNames": "production_container intro-content",
+                                "innerText": "",
+                                "children": [
+                                    {
+                                        "tag": "h1",
+                                        "id": "intro_title",
+                                        "classNames": "production_container intro-title",
+                                        "innerText": "Welcome to Our Platform",
+                                        "children": []
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "id": "intro_text",
+                                        "classNames": "production_container intro-text",
+                                        "innerText": "We help businesses grow through innovative solutions and creative strategies. Our team of experts is ready to bring your vision to life.",
+                                        "children": []
+                                    },
+                                    {
+                                        "tag": "button",
+                                        "id": "intro_button",
+                                        "classNames": "production_container intro-button",
+                                        "innerText": "Get Started",
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "tag": "div",
+                                "id": "intro_image",
+                                "classNames": "production_container intro-image",
+                                "innerText": "",
+                                "children": [
+                                    {
+                                        "tag": "img",
+                                        "id": "intro_image_img",
+                                        "classNames": "production_container",
+                                        "innerText": "",
+                                        "src": "https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "initialStyle": []
+    }
+]

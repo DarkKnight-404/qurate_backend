@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML/CSS Editor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #1e1e1e;
+            color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2d2d2d;
+            padding: 10px 20px;
+            border-bottom: 1px solid #444;
+        }
+
+        header .left-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        header select,
+        header button,
+        header input {
+            background: #3a3a3a;
+            color: #f5f5f5;
+            border: 1px solid #555;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        header button:hover,
+        header select:hover,
+        header input:hover {
+            background: #555;
+        }
+
+        .main {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .editors {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #1e1e1e;
+            border-right: 1px solid #444;
+        }
+
+        .editor {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor label {
+            background: #2d2d2d;
+            padding: 5px 10px;
+            font-size: 14px;
+            border-bottom: 1px solid #444;
+        }
+
+        textarea {
+            flex: 1;
+            background: #1e1e1e;
+            color: #dcdcdc;
+            border: none;
+            outline: none;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: none;
+        }
+
+        .preview {
+            flex: 1;
+            background: white;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: white;
+        }
+
+        /* Loader overlay */
+        #loaderOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loader {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Popup Modal */
+        #popupModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 8px;
+            width: 450px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+        }
+
+        #serverResponseContainer {
+            max-height: 300px;
+            overflow-y: auto;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .server-field {
+            margin-bottom: 12px;
+        }
+
+        .server-field label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 3px;
+            font-size: 13px;
+        }
+
+        .server-field input,
+        .server-field textarea {
+            width: 100%;
+            padding: 6px 8px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background: #1e1e1e;
+            color: #f5f5f5;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        .server-field textarea {
+            resize: vertical;
+            min-height: 50px;
+        }
+
+        .modal-content button {
+            background: #3498db;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .modal-content button:hover {
+            background: #2980b9;
+        }
+
+        .modal-content button.close-btn {
+            background: #e74c3c;
+            margin-left: 10px;
+        }
+
+        .modal-content button.close-btn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="left-controls">
+            <select id="dropdown1">
+                <option value="component">Adder Component</option>
+                <option value="template">Template Component</option>
+            </select>
+            <select id="dropdown2">
+                <option>paragraph</option>
+                <option>intro</option>
+                <option>button</option>
+            </select>
+            <input type="text" id="componentId" placeholder="id">
+            <input type="text" id="componentName" placeholder="name">
+            <input type="text" id="rootName" placeholder="rootName">
+            <button onclick="runCode()">Run ▶</button>
+        </div>
+        <div class="right-controls">
+            <button onclick="submitComponent()">Submit</button>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="editors">
+            <div class="editor">
+                <label>HTML</label>
+                <textarea id="htmlCode"><h1>Hello World</h1></textarea>
+            </div>
+            <div class="editor">
+                <label>CSS</label>
+                <textarea id="cssCode">body { font-family: Arial; background: #f0f0f0; }</textarea>
+            </div>
+        </div>
+        <div class="preview">
+            <iframe id="preview"></iframe>
+        </div>
+    </div>
+
+    <!-- Loader Overlay -->
+    <div id="loaderOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="popupModal">
+        <div class="modal-content">
+            <h3>Server Response Preview</h3>
+            <div id="serverResponseContainer"></div>
+            <button onclick="uploadComponent()">Upload</button>
+            <button onclick="closePopup()" class="close-btn">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let serverDataCache = {};
+
+        function runCode() {
+            const html = document.getElementById("htmlCode").value;
+            const css = document.getElementById("cssCode").value;
+            const preview = document.getElementById("preview").contentDocument;
+            preview.open();
+            preview.write(`<!DOCTYPE html><html><head><style>${css}</style></head><body>${html}</body></html>`);
+            preview.close();
+        }
+
+        window.onload = runCode;
+
+        function submitComponent() {
+            const html = document.getElementById("htmlCode").value;
+            const css = document.getElementById("cssCode").value;
+            const option1 = document.getElementById("dropdown1").value;
+            const option2 = document.getElementById("dropdown2").value;
+            const compId = document.getElementById("componentId").value;
+            const compName = document.getElementById("componentName").value;
+            const rootName = document.getElementById("rootName").value;
+
+            const loader = document.getElementById("loaderOverlay");
+            loader.style.display = "flex";
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:9600/checkaddingnewcomponent", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function () {
+                loader.style.display = "none";
+                if (xhr.status === 200) {
+                    try {
+                        serverDataCache = JSON.parse(xhr.responseText);
+                    } catch (e) {
+                        alert("Invalid JSON from server");
+                        return;
+                    }
+                    renderServerData(serverDataCache);
+                    document.getElementById("popupModal").style.display = "flex";
+                } else {
+                    alert("Error: " + xhr.status);
+                }
+            };
+
+            xhr.onerror = function () {
+                loader.style.display = "none";
+                alert("Request failed!");
+            };
+
+            xhr.send(JSON.stringify({
+                html, css, option1, option2, compId, compName, rootName
+            }));
+        }
+
+        function renderServerData(data) {
+            const container = document.getElementById("serverResponseContainer");
+            container.innerHTML = ""; // clear previous content
+
+            const pre = document.createElement("pre");
+            pre.id = "jsonData";
+            pre.contentEditable = "true"; // make it editable
+            pre.style.whiteSpace = "pre-wrap"; // wrap long lines
+            pre.style.wordBreak = "break-word";
+            pre.style.background = "#1e1e1e";
+            pre.style.color = "#f5f5f5";
+            pre.style.padding = "10px";
+            pre.style.borderRadius = "5px";
+            pre.style.border = "1px solid #555";
+            pre.style.overflowY = "auto";
+            pre.style.maxHeight = "300px";
+            pre.style.fontFamily = "monospace";
+            pre.textContent = JSON.stringify(data, null, 2);
+
+            container.appendChild(pre);
+        }
+
+        function uploadComponent() {
+            const html = document.getElementById("htmlCode").value;
+            const css = document.getElementById("cssCode").value;
+            const option1 = document.getElementById("dropdown1").value;
+            const option2 = document.getElementById("dropdown2").value;
+            const compId = document.getElementById("componentId").value;
+            const compName = document.getElementById("componentName").value;
+            const rootName = document.getElementById("rootName").value;
+
+            // Get the edited JSON from the <pre>
+            const pre = document.getElementById("jsonData");
+            let serverData = {};
+            try {
+                serverData = JSON.parse(pre.textContent);
+            } catch (e) {
+                alert("Invalid JSON data. Please fix it before uploading.");
+                return;
+            }
+
+            const payload = {
+                html,
+                css,
+                option1,
+                option2,
+                compId,
+                compName,
+                rootName,
+                serverData
+            };
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:9600/uploadnewcomponent", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert("Upload successful: " + xhr.responseText);
+                    closePopup();
+                } else {
+                    alert("Upload failed: " + xhr.status + " - " + xhr.responseText);
+                }
+            };
+
+            xhr.onerror = function () {
+                alert("Request failed!");
+            };
+
+            xhr.send(JSON.stringify(payload));
+        }
+
+        function closePopup() {
+            document.getElementById("popupModal").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
