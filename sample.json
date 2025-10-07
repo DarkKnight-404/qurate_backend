@@ -1,0 +1,64 @@
+{
+    "_id": "68e222fce38a371475122d8b",
+    "name": "Simple header",
+    "id": "H0001",
+    "img": "simple_image.png",
+    "style": "{.header { background: #2c3e50; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; } .logo { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; } .nav { display: flex; gap: 1.5rem; } .nav-link { color: white; text-decoration: none; } .nav-link:hover { color: #3498db; }}",
+    "htmlMap": [
+        {
+            "tag": "header",
+            "id": "header",
+            "classNames": "production_container header",
+            "children": [
+                {
+                    "tag": "a",
+                    "id": "logo",
+                    "classNames": "production_container logo",
+                    "innerText": "MySite",
+                    "attributes": {
+                        "href": "#"
+                    },
+                    "children": []
+                },
+                {
+                    "tag": "nav",
+                    "classNames": "production_container nav",
+                    "children": [
+                        {
+                            "tag": "a",
+                            "id": "home",
+                            "classNames": "production_container nav-link",
+                            "innerText": "Home",
+                            "attributes": {
+                                "href": "#"
+                            },
+                            "children": []
+                        },
+                        {
+                            "tag": "a",
+                            "id": "about",
+                            "classNames": "production_container nav-link",
+                            "innerText": "About",
+                            "attributes": {
+                                "href": "#"
+                            },
+                            "children": []
+                        },
+                        {
+                            "tag": "a",
+                            "id": "contact",
+                            "classNames": "production_container nav-link",
+                            "innerText": "Contact",
+                            "attributes": {
+                                "href": "#"
+                            },
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "initialStyle": [],
+    "category": "headersection"
+}

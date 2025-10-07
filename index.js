@@ -84,10 +84,10 @@ async function run() {
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
-        return true;
+        return { status: true };
     }
     catch (e) {
-        return false;
+        return { status: false, error: e };
     }
     finally {
         // Ensures that the client will close when you finish/error
@@ -98,7 +98,22 @@ run().catch(console.dir);
 
 app.get("/testconn", (req, res) => {
     run().then(val => {
-        res.send(val ? "<h1>Test Cleared</h1>" : "<h1>There is an error</h1>")
+        res.send(val.status ? "<h1>Test Cleared</h1>" : ("<h1>There is an error</h1>" + val.error))
+    }).catch((err) => {
+
+        run().then(() => {
+
+            run().then(() => {
+
+                res.send("rerun")
+
+            })
+
+        }).catch((err) => {
+
+            res.send([]);
+
+        })
     })
 })
 
@@ -129,13 +144,8 @@ async function getAdderOptionsByCategory(category) {
 
     const data = await collection.find({ category: category }).toArray();
 
-    try {
-        return data;
-    } catch (error) {
-        console.log("error in gettinf data from database")
-        console.log(error);
-        return [];
-    }
+    return data;
+
 
 
 
@@ -151,13 +161,8 @@ async function getAdderOptionById(id) {
 
     const data = await collection.find({ id: id }).toArray();
 
-    try {
-        return data;
-    } catch (error) {
-        console.log("error in gettinf data from database")
-        console.log(error);
-        return [];
-    }
+    return data;
+
 }
 
 async function getTemplateComponentyById(id) {
@@ -170,13 +175,8 @@ async function getTemplateComponentyById(id) {
 
     const data = await collection.find({ id: id }).toArray();
 
-    try {
-        return data;
-    } catch (error) {
-        console.log("error in gettinf data from database")
-        console.log(error);
-        return [];
-    }
+    return data;
+
 }
 
 async function getComponentTemplatesByCategory(category) {
@@ -189,14 +189,12 @@ async function getComponentTemplatesByCategory(category) {
 
     const data = await collection.find({ category: category }).toArray();
 
-    try {
-        return data;
-    } catch (error) {
-        console.log("error in gettinf data from database")
-        console.log(error);
-        return [];
-    }
+    return data;
+
 }
+
+
+
 async function addServerData(serverData) {
     try {
         await client.connect();
@@ -204,6 +202,27 @@ async function addServerData(serverData) {
 
         const db = client.db("websiteBuilder");
         const collection = db.collection("addercomponents");
+
+        // Insert the serverData along with the category
+        const result = await collection.insertOne(serverData);
+        console.log("Data inserted with id:", result.insertedId);
+
+        return result;
+    } catch (error) {
+        console.log("Error inserting data into database");
+        console.log(error);
+        return JSON.stringify(error);
+    } finally {
+        await client.close(); // close connection if you don't need it open
+    }
+}
+async function addServerDataComponent(serverData) {
+    try {
+        await client.connect();
+        console.log("Connected to MongoDB");
+
+        const db = client.db("websiteBuilder");
+        const collection = db.collection("componentTemplates");
 
         // Insert the serverData along with the category
         const result = await collection.insertOne(serverData);
@@ -291,7 +310,27 @@ const elements = {
 app.get("/getComponentTemplates", (req, res) => {
     let category = req.query.category;
     getComponentTemplatesByCategory(category).then((data) => {
+        console.log("pass in first try")
         res.send(data);
+        // console.log(data)
+    }).catch((err) => {
+
+        console.log(err);
+
+        run().then(() => {
+
+            getComponentTemplatesByCategory(category).then((data) => {
+
+                console.log("pass in second try")
+                res.send(data)
+
+            })
+
+        }).catch((err) => {
+
+            res.send([]);
+
+        })
     })
 })
 
@@ -303,6 +342,28 @@ app.get("/getcomponent", (req, res) => {
     // res.send(data)
     getTemplateComponentyById(req.query.id).then(val => {
         res.send(val[0]);
+    }).catch((err) => {
+
+        run().then((val) => {
+
+            if (val.status == false) {
+                res.send("<h1>Failed rerendering</h1>")
+            }
+            else {
+                getTemplateComponentyById(req.query.id).then((data) => {
+
+                    res.send(data)
+
+                })
+            }
+
+
+
+        }).catch((err) => {
+
+            res.send([]);
+
+        })
     })
 })
 
@@ -322,10 +383,21 @@ app.get("/getelementadderoptions", (req, res) => {
         console.log(val);
         res.send(val);
     }).catch((err) => {
-        console.log(err);
-        res.send([]);
-    })
 
+        run().then(() => {
+
+            getAdderOptionsByCategory(option).then((data) => {
+
+                res.send(data)
+
+            })
+
+        }).catch((err) => {
+
+            res.send([]);
+
+        })
+    })
 })
 
 
@@ -335,8 +407,20 @@ app.get("/getelementadderbyid", (req, res) => {
     getAdderOptionById(req.query.id).then((data) => {
         res.send(data[0]);
     }).catch((err) => {
-        console.log(err);
-        res.send([]);
+
+        run().then(() => {
+
+            getAdderOptionById(req.query.id).then((data) => {
+
+                res.send(data)
+
+            })
+
+        }).catch((err) => {
+
+            res.send([]);
+
+        })
     })
 
 })
@@ -348,7 +432,7 @@ app.get("/getelementadderbyid", (req, res) => {
 
 
 
-function htmlToJson(htmlString, componentId = "component_0001", name = "default_component", rootName, category) {
+function htmlToJson(htmlString, componentId = "component_0001", name = "default_component", rootName, category, url) {
     const dom = new JSDOM(htmlString, { contentType: "text/html" });
     const doc = dom.window.document;
 
@@ -391,9 +475,66 @@ function htmlToJson(htmlString, componentId = "component_0001", name = "default_
     const jsonOutput = {
         id: componentId,
         name: name,
-        image: "DefaultComponentImage.png",
+        image: url,
         css: `{ ${cssContent} }`,
         htmlMap: elementToJson(rootEl),
+        category: category
+    };
+
+    return jsonOutput;
+}
+
+
+
+function htmlToJson2(htmlString, componentId = "component_0001", name = "default_component", rootName, category, url) {
+    const dom = new JSDOM(htmlString, { contentType: "text/html" });
+    const doc = dom.window.document;
+
+    let unknownId = 0;
+
+    // Extract CSS inside <style> (minified into a single line)
+    let cssContent = "";
+    doc.querySelectorAll("style").forEach(style => {
+        cssContent += style.textContent.replace(/\s+/g, " ").trim() + " ";
+    });
+
+    // Recursive function to convert DOM -> JSON
+    function elementToJson(el) {
+        if (el.nodeType !== 1) return null; // Only process elements
+
+        const obj = {
+            tag: el.tagName.toLowerCase(),
+            id: el.id || ("unknown_id_" + (unknownId++)),
+            classNames: el.className ? "production_container " + el.className : "production_container",
+            innerText:
+                el.childNodes.length === 1 && el.childNodes[0].nodeType === 3
+                    ? el.textContent.trim() // ✅ gives real character (✨) not escaped
+                    : "",
+            children: []
+        };
+
+        el.childNodes.forEach(child => {
+            if (child.nodeType === 1) {
+                const childObj = elementToJson(child);
+                if (childObj) obj.children.push(childObj);
+            }
+        });
+
+        return obj;
+    }
+
+    // Find the root container (first .glass-panel)
+    // const rootEl = doc.querySelector("." + rootName);
+    const rootEl = doc.documentElement;
+    console.log(doc.documentElement)
+
+    const jsonOutput = {
+        id: componentId,
+        name: name,
+        img: url,
+        style: `{ ${cssContent} }`,
+        initialStyle: [],
+        htmlMap: [elementToJson(rootEl)],
         category: category
     };
 
@@ -408,17 +549,63 @@ function htmlToJson(htmlString, componentId = "component_0001", name = "default_
 
 
 app.post("/checkaddingnewcomponent", express.json(), (req, res) => {
-    const { html, css, option1, option2, compId, compName, rootName } = req.body;
-    console.log("Received for check:", { html, css, option1, option2 });
+    const { html, css, option1, option2, compId, compName, rootName, url } = req.body;
+    console.log("Received for check:", { html, css, option1, option2, url });
+
+    if (option1 == "template") {
+        let jsonCompData = htmlToJson2(html, compId, compName, rootName, option2, url);
+        console.log(jsonCompData)
+        res.send(jsonCompData);
+        return;
+    }
 
     // Simulate response
     // res.send(`Checked successfully. Option1: ${option1}, Option2: ${option2}`);
 
-    let jsonData = htmlToJson(html, compId, compName, rootName, option2);
+    let jsonData = htmlToJson(html, compId, compName, rootName, option2, url);
     res.send(jsonData);
 });
 
 app.post("/uploadnewcomponent", express.json(), (req, res) => {
+
+    try {
+        const {
+            html,
+            css,
+            option1,
+            option2,
+            compId,
+            compName,
+            rootName,
+            serverData
+        } = req.body;
+
+        if (option1 == "template") {
+
+            addServerDataComponent(serverData).then(result => {
+
+                if (typeof result == String) {
+                    res.status(501).send(result);
+                }
+
+                if (result.acknowledged) {
+                    res.status(200).send("Component uploaded successfully!");
+                }
+                else {
+                    res.status(500).send("Server error while uploading component." + JSON.stringify(result));
+                }
+            }).catch((err) => {
+                res.status(500).send("Server error while uploading component." + JSON.stringify(err));
+            })
+
+
+        }
+
+    } catch (error) {
+
+    }
+
+
     try {
         const {
             html,
@@ -475,7 +662,7 @@ app.get("/editor", (req, res) => {
 
 
 
-let port = process.env.port || 9000;
+let port = process.env.port || 9600;
 app.listen(port, () => {
     console.log(port)
     console.log("launched on localhost 9600");
