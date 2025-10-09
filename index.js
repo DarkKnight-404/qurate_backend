@@ -58,7 +58,7 @@ async function main() {
     }
 }
 
-main();
+// main();
 
 
 
@@ -94,7 +94,7 @@ async function run() {
         await client.close();
     }
 }
-run().catch(console.dir);
+// run().catch(console.dir);
 
 app.get("/testconn", (req, res) => {
     run().then(val => {
@@ -218,9 +218,11 @@ async function addServerData(serverData) {
 }
 async function addServerDataComponent(serverData) {
     try {
+        // Connect to MongoDB
         await client.connect();
         console.log("Connected to MongoDB");
 
+        // Select database and collection
         const db = client.db("websiteBuilder");
         const collection = db.collection("componentTemplates");
 
@@ -229,15 +231,17 @@ async function addServerDataComponent(serverData) {
         console.log("Data inserted with id:", result.insertedId);
 
         return result;
-    } catch (error) {
+
+    } catch (err) {
         console.log("Error inserting data into database");
-        console.log(error);
-        return JSON.stringify(error);
+        console.log(err);
+        return JSON.stringify(err);
     } finally {
-        await client.close(); // close connection if you don't need it open
+        await client.close();
     }
 }
 
+// addServerDataComponent({ "id": "Rohit_175983852937010", "name": "Simple Service Section", "img": "https://i.ibb.co/cKCcnS0c/6e1ba1118a84.png", "style": "{}", "initialStyle": [], "htmlMap": [], "category": "servicessection" })
 
 
 
@@ -586,17 +590,22 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
 
                 if (typeof result == String) {
                     res.status(501).send(result);
+                    return;
                 }
 
                 if (result.acknowledged) {
                     res.status(200).send("Component uploaded successfully!");
+                    return;
                 }
                 else {
                     res.status(500).send("Server error while uploading component." + JSON.stringify(result));
+                    return;
                 }
             }).catch((err) => {
                 res.status(500).send("Server error while uploading component." + JSON.stringify(err));
             })
+
+            return;
 
 
         }
