@@ -514,8 +514,12 @@ function htmlToJson2(htmlString, componentId = "component_0001", name = "default
                 el.childNodes.length === 1 && el.childNodes[0].nodeType === 3
                     ? el.textContent.trim() // ✅ gives real character (✨) not escaped
                     : "",
-            children: []
+            children: [],
         };
+
+        if(el.tagName.toLowerCase() === "img"){
+            obj.src = el.src;
+        }
 
         el.childNodes.forEach(child => {
             if (child.nodeType === 1) {
