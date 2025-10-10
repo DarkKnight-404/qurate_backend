@@ -697,11 +697,18 @@ app.post("/createnewpage", express.json(), (req, res) => {
     try {
         const {
             htmlCode,
-            userId
+            userId,
+            description
         } = req.body;
 
 
-        addNewPage(htmlCode).then(result => {
+        addNewPage(
+        {
+            userId,
+            htmlCode,
+            createdOn: Date.now(),
+            description
+        }).then(result => {
 
             if (typeof result == String) {
                 res.status(501).send(result);
