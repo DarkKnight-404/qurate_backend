@@ -697,7 +697,6 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
 
 app.post("/createnewpage", express.json(), (req, res) => {
     console.log("request recieved");
-    res.send("request recieved");
     try {
         const {
             htmlCode,
@@ -739,13 +738,13 @@ app.post("/createnewpage", express.json(), (req, res) => {
         //     })
 
         // return;
-
+        
         addNewPage({
-            userId: userId,
-            htmlCode: htmlCode,
+            userId: "rohit",
+            htmlCode: "<h1>Hello World</h1>",
             createdOn: Date.now(),
-            description: description,
-            pageId: title.replaceAll(" ","_")
+            description: "testing purpose",
+            pageId: "testing_page"
         }).then((val) => {
             console.log(val)
             res.send("data added successfullyu")
