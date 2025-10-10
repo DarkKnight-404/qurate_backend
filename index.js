@@ -241,6 +241,7 @@ async function addServerDataComponent(serverData) {
     }
 }
 async function addNewPage(serverData) {
+    console.log("adding new page")
     try {
         // Connect to MongoDB
         await client.connect();
@@ -264,6 +265,7 @@ async function addNewPage(serverData) {
         await client.close();
     }
 }
+
 
 // addServerDataComponent({ "id": "Rohit_175983852937010", "name": "Simple Service Section", "img": "https://i.ibb.co/cKCcnS0c/6e1ba1118a84.png", "style": "{}", "initialStyle": [], "htmlMap": [], "category": "servicessection" })
 
@@ -694,6 +696,7 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
 
 
 app.post("/createnewpage", express.json(), (req, res) => {
+    console.log("request recieved");
     try {
         const {
             htmlCode,
@@ -702,34 +705,54 @@ app.post("/createnewpage", express.json(), (req, res) => {
             description
         } = req.body;
 
-
-        addNewPage(
-        {
+        console.log(htmlCode,
             userId,
-            htmlCode,
+            title,
+            description)
+
+
+        // addNewPage(
+        //     {
+        //         userId,
+        //         htmlCode,
+        //         createdOn: Date.now(),
+        //         description,
+        //         pageId: title.replaceAll(" ", "_")
+        //     }).then(result => {
+
+        //         if (typeof result == String) {
+        //             res.status(501).send(result);
+        //             return;
+        //         }
+
+        //         if (result.acknowledged) {
+        //             res.status(200).send("Component uploaded successfully!");
+        //             return;
+        //         }
+        //         else {
+        //             res.status(500).send("Server error while uploading component." + JSON.stringify(result));
+        //             return;
+        //         }
+        //     }).catch((err) => {
+        //         res.status(500).send("Server error while uploading component." + JSON.stringify(err));
+        //     })
+
+        // return;
+
+        addNewPage({
+            userId: userId,
+            htmlCode: htmlCode,
             createdOn: Date.now(),
-            description,
+            description: description,
             pageId: title.replaceAll(" ","_")
-        }).then(result => {
-
-            if (typeof result == String) {
-                res.status(501).send(result);
-                return;
-            }
-
-            if (result.acknowledged) {
-                res.status(200).send("Component uploaded successfully!");
-                return;
-            }
-            else {
-                res.status(500).send("Server error while uploading component." + JSON.stringify(result));
-                return;
-            }
-        }).catch((err) => {
-            res.status(500).send("Server error while uploading component." + JSON.stringify(err));
+        }).then((val) => {
+            console.log(val)
+            res.send("data added successfullyu")
+        }).catch(err => {
+            console.log(err);
+            res.send(JSON.stringify(err));
         })
 
-        return;
 
 
 
