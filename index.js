@@ -697,6 +697,7 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
 
 app.post("/createnewpage", express.json(), (req, res) => {
     console.log("request recieved");
+    res.send("request recieved");
     try {
         const {
             htmlCode,
