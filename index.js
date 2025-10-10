@@ -698,6 +698,7 @@ app.post("/createnewpage", express.json(), (req, res) => {
         const {
             htmlCode,
             userId,
+            title,
             description
         } = req.body;
 
@@ -707,7 +708,8 @@ app.post("/createnewpage", express.json(), (req, res) => {
             userId,
             htmlCode,
             createdOn: Date.now(),
-            description
+            description,
+            pageId: title.replaceAll(" ","_")
         }).then(result => {
 
             if (typeof result == String) {
