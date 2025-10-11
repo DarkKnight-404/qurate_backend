@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, 'Public')));
 
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const { get } = require("express/lib/response");
 const uri = "mongodb+srv://pshychicexcusealpha_db_user:wl1NBOBNGFtUd3Ce@cluster0.bxw9ggf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -193,6 +194,39 @@ async function getComponentTemplatesByCategory(category) {
 
 }
 
+async function getSitesByUserId(userId) {
+    await client.connect();
+    console.log("connected to mongodb");
+
+
+    const db = client.db("websiteBuilder");
+    const collection = db.collection("sites");
+
+    const data = await collection.find({ userId: userId }).toArray();
+
+    console.log(data)
+
+    return data;
+
+}
+
+
+async function getSiteByPageId(pageId) {
+    await client.connect();
+    console.log("connected to mongodb");
+
+
+    const db = client.db("websiteBuilder");
+    const collection = db.collection("sites");
+
+    const data = await collection.find({ pageId: pageId }).toArray();
+
+    console.log(data)
+
+    return data;
+}
+
+
 
 
 async function addServerData(serverData) {
@@ -265,6 +299,7 @@ async function addNewPage(serverData) {
         await client.close();
     }
 }
+
 
 
 // addServerDataComponent({ "id": "Rohit_175983852937010", "name": "Simple Service Section", "img": "https://i.ibb.co/cKCcnS0c/6e1ba1118a84.png", "style": "{}", "initialStyle": [], "htmlMap": [], "category": "servicessection" })
@@ -695,70 +730,65 @@ app.post("/uploadnewcomponent", express.json(), (req, res) => {
 
 
 
-app.post("/createnewpage", express.json(), (req, res) => {
+app.post("/createnewpage", express.text(), (req, res) => {
     console.log("request recieved");
-    try {
-        const {
-            htmlCode,
-            userId,
-            title,
-            description
-        } = req.body;
+    let data = JSON.parse(req.body);
+    addNewPage({
+        userId: data.userId,
+        htmlCode: data.htmlCode,
+        createdOn: Date.now(),
+        description: data.description,
+        pageId: data.title.replaceAll(" ", "_").toLowerCase()
+    }).then((val) => {
+        console.log(val)
+        res.send("data added successfullyu")
+    }).catch(err => {
+        console.log(err);
+        res.send(JSON.stringify(err));
+    })
 
-        console.log(htmlCode,
-            userId,
-            title,
-            description)
+})
 
+app.get("/sitescollection", (req, res) => {
+    console.log(req.query);
+    let userId = req.query.userId;
 
-        // addNewPage(
-        //     {
-        //         userId,
-        //         htmlCode,
-        //         createdOn: Date.now(),
-        //         description,
-        //         pageId: title.replaceAll(" ", "_")
-        //     }).then(result => {
+    getSitesByUserId(userId).then((data) => {
+        res.send(data);
+    }).catch((err) => {
 
-        //         if (typeof result == String) {
-        //             res.status(501).send(result);
-        //             return;
-        //         }
+        run().then(() => {
+            getSitesByUserId(userId).then((data) => {
 
-        //         if (result.acknowledged) {
-        //             res.status(200).send("Component uploaded successfully!");
-        //             return;
-        //         }
-        //         else {
-        //             res.status(500).send("Server error while uploading component." + JSON.stringify(result));
-        //             return;
-        //         }
-        //     }).catch((err) => {
-        //         res.status(500).send("Server error while uploading component." + JSON.stringify(err));
-        //     })
-
-        // return;
-        
-        addNewPage({
-            userId: "rohit",
-            htmlCode: "<h1>Hello World</h1>",
-            createdOn: Date.now(),
-            description: "testing purpose",
-            pageId: "testing_page"
-        }).then((val) => {
-            console.log(val)
-            res.send("data added successfullyu")
-        }).catch(err => {
-            console.log(err);
-            res.send(JSON.stringify(err));
+                res.send(data)
+            })
+        }).catch((err) => {
+            res.send([]);
         })
+    })
 
 
+})
+
+app.get("/sitebypageid", (req, res) => {
+    console.log(req.query);
+    let pageId = req.query.pageId;
+
+    getSiteByPageId(pageId).then((data) => {
+        res.send(data[0].htmlCode);
+    }).catch((err) => {
+
+        run().then(() => {
+            getSiteByPageId(pageId).then((data) => {
+
+                res.send(data)
+            })
+        }).catch((err) => {
+            res.send([]);
+        })
+    })
 
 
-    } catch (error) {
-
-    }
 })
 
 
