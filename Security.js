@@ -22,14 +22,16 @@ function issueTokens(res, user) {
   const sessionToken = createSessionToken(user);
 
   res.cookie("authToken", authToken, {
-    httpOnly: true,
-    secure: false,
+    httpOnly: true,    // prevents JS from accessing
+    secure: true,      // must be true for HTTPS
+    sameSite: "none",  // allow cross-site cookies
     maxAge: 24 * 60 * 60 * 1000 // 1 day
   });
 
   res.cookie("sessionToken", sessionToken, {
-    httpOnly: true,
-    secure: false,
+    httpOnly: true,    // prevents JS from accessing
+    secure: true,      // must be true for HTTPS
+    sameSite: "none",  // allow cross-site cookies
     maxAge: 30 * 24 * 60 * 60 * 1000 // 1 month
   });
 }
@@ -40,7 +42,7 @@ function requireAuth(req, res, next) {
   const authToken = req.cookies.authToken;
   const sessionToken = req.cookies.sessionToken;
 
-  
+
 
   try {
     req.user = jwt.verify(authToken, JWT_SECRET).user;
@@ -54,8 +56,9 @@ function requireAuth(req, res, next) {
       // Issue new authToken
       const newAuthToken = createAuthToken(decoded.user);
       res.cookie("authToken", newAuthToken, {
-        httpOnly: true,
-        secure: false,
+        httpOnly: true,    // prevents JS from accessing
+        secure: true,      // must be true for HTTPS
+        sameSite: "none",  // allow cross-site cookies
         maxAge: 24 * 60 * 60 * 1000
       });
 
@@ -84,8 +87,9 @@ function refreshSession(req, res, next) {
       const newSessionToken = createSessionToken(decoded.user);
 
       res.cookie("sessionToken", newSessionToken, {
-        httpOnly: true,
-        secure: false,
+        httpOnly: true,    // prevents JS from accessing
+        secure: true,      // must be true for HTTPS
+        sameSite: "none",  // allow cross-site cookies
         maxAge: 30 * 24 * 60 * 60 * 1000
       });
     }
@@ -98,8 +102,8 @@ function refreshSession(req, res, next) {
 
 
 
-function otpVerific(email,otp){
-    return verifyOneTimePass(email,otp);
+function otpVerific(email, otp) {
+  return verifyOneTimePass(email, otp);
 }
 
 
