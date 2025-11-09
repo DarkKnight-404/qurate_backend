@@ -6,7 +6,7 @@ require('dotenv').config()
 const path = require("path");
 let app = express();
 app.use(cors({
-    origin: "*",  // your React app URL
+    origin: "https://qurate-frontend.vercel.app",  // your React app URL
     credentials: true                // allow cookies
 }));
 app.use(cookieParser());
