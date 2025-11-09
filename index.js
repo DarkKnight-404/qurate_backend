@@ -1,11 +1,15 @@
 let express = require("express");
 let cors = require("cors");
+const cookieParser = require("cookie-parser");
 const { JSDOM } = require("jsdom");
 require('dotenv').config()
 const path = require("path");
 let app = express();
-app.use(cors());
-
+app.use(cors({
+    origin: "http://localhost:3000",  // your React app URL
+    credentials: true                // allow cookies
+}));
+app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'Public')));
 
@@ -14,6 +18,9 @@ app.use(express.static(path.join(__dirname, 'Public')));
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const { get } = require("express/lib/response");
+const { issueTokens, requireAuth, refreshSession, otpVerific } = require("./Security");
+const { registerUser, login, addVisit } = require("./db");
+const { sendMail } = require("./email");
 const uri = "mongodb+srv://pshychicexcusealpha_db_user:wl1NBOBNGFtUd3Ce@cluster0.bxw9ggf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -372,7 +379,7 @@ const elements = {
 
 
 // for templae components
-app.get("/getComponentTemplates", (req, res) => {
+app.get("/getComponentTemplates", refreshSession, requireAuth, (req, res) => {
     let category = req.query.category;
     getComponentTemplatesByCategory(category).then((data) => {
         console.log("pass in first try")
@@ -399,7 +406,7 @@ app.get("/getComponentTemplates", (req, res) => {
     })
 })
 
-app.get("/getcomponent", (req, res) => {
+app.get("/getcomponent", refreshSession, requireAuth, (req, res) => {
     // console.log(req.query);
     // let data = tempCompData.find((data) => {
     //     return data.id === req.query.id;
@@ -438,7 +445,7 @@ app.get("/getcomponent", (req, res) => {
 
 
 // for elememnts
-app.get("/getelementadderoptions", (req, res) => {
+app.get("/getelementadderoptions", refreshSession, requireAuth, (req, res) => {
 
     console.log(req.query);
     let option = req.query.category.toLocaleLowerCase();
@@ -466,7 +473,7 @@ app.get("/getelementadderoptions", (req, res) => {
 })
 
 
-app.get("/getelementadderbyid", (req, res) => {
+app.get("/getelementadderbyid", refreshSession, requireAuth, (req, res) => {
 
     console.log(req.query);
     getAdderOptionById(req.query.id).then((data) => {
@@ -551,7 +558,7 @@ function htmlToJson(htmlString, componentId = "component_0001", name = "default_
 
 
 
-function htmlToJson2(htmlString, componentId = "component_0001", name = "default_component", rootName, category, url) {
+function htmlToJson2(htmlString, componentId = "component_0001", name = "default_component", rootName, category = "websites", url = "https://thumbs.dreamstime.com/b/demo-text-businessman-dark-vintage-background-108609906.jpg") {
     const dom = new JSDOM(htmlString, { contentType: "text/html" });
     const doc = dom.window.document;
 
@@ -615,7 +622,14 @@ function htmlToJson2(htmlString, componentId = "component_0001", name = "default
 
 // console.log(JSON.stringify(htmlToJson(htmlInput, "component_00010", "gradient ","neon-intro","intro"), null, 2));
 
-
+app.get("/addnewvisit",(req,res)=>{
+    const siteId = req.query.site;
+    addVisit(siteId).then(resp=>{
+        res.send(resp)
+    }).catch(err=>{
+        res.send({status: "error",err: err})
+    })
+})
 
 app.post("/checkaddingnewcomponent", express.json(), (req, res) => {
     const { html, css, option1, option2, compId, compName, rootName, url } = req.body;
@@ -738,7 +752,8 @@ app.post("/createnewpage", express.text(), (req, res) => {
         htmlCode: data.htmlCode,
         createdOn: Date.now(),
         description: data.description,
-        pageId: data.title.replaceAll(" ", "_").toLowerCase()
+        pageId: data.title.replaceAll(" ", "_").toLowerCase(),
+        visitors: 0
     }).then((val) => {
         console.log(val)
         res.send("data added successfullyu")
@@ -749,7 +764,7 @@ app.post("/createnewpage", express.text(), (req, res) => {
 
 })
 
-app.get("/sitescollection", (req, res) => {
+app.get("/sitescollection", refreshSession, requireAuth, (req, res) => {
     console.log(req.query);
     let userId = req.query.userId;
 
@@ -770,7 +785,7 @@ app.get("/sitescollection", (req, res) => {
 
 })
 
-app.get("/sitebypageid", (req, res) => {
+app.get("/sitebypageid", refreshSession, requireAuth, (req, res) => {
     console.log(req.query);
     let pageId = req.query.pageId;
 
@@ -794,10 +809,230 @@ app.get("/sitebypageid", (req, res) => {
 
 
 
-app.get("/editor", (req, res) => {
+async function getAiSite(prompt) {
+    async function query(data) {
+        const response = await fetch(
+            "https://router.huggingface.co/v1/chat/completions",
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.HUGGINGFACES}`,
+                    "Content-Type": "application/json",
+                },
+                method: "POST",
+                body: JSON.stringify(data),
+            }
+        );
+        const result = await response.json();
+        return result;
+    }
+
+    return query({
+        "messages": [
+            {
+                "role": "user",
+                "content": `
+                You are a website layout generato.
+                Generate only valid HTML and CSS output.
+                The HTML must be entirely inside a single <body>...</body> tag.
+                Place all CSS inside a single <style>...</style> tag after the <body> section.
+                Do not include <html>, <head>, <script>, or any external files.
+                every image should be contained inside a seperate div 
+                Do not include JavaScript.
+                Output format must be exactly: <body><!-- your HTML elements here --></body><style>/* your CSS here */</style> 
+                
+                Now create the layout for: ${prompt}`
+            }
+        ],
+        "model": "openai/gpt-oss-120b:groq"
+    })
+}
+
+// getAiSite(" college club at MIT ADT University called Codeshef with proper img urls whereever required make it asthetic and give proper color theme ").
+//         then((resp) => {
+//             htmlString = (resp['choices'][0]['message']['content']);
+//             console.log(htmlString)
+//             console.log(htmlToJson2(htmlString));
+//         }).catch(err => {
+//             console.log(JSON.stringify(err))
+//         })
+
+
+app.get("/testai", refreshSession, requireAuth, (req, res) => {
+    getAiSite(" college club at MIT ADT University called Codeshef with proper img urls whereever required make it asthetic and give proper color theme ").
+        then((resp) => {
+            htmlString = (resp['choices'][0]['message']['content']);
+            res.send(htmlToJson2(htmlString));
+        }).catch(err => {
+            res.send(JSON.stringify(err))
+        })
+})
+
+
+app.post("/genaipage", express.json(), (req, res) => {
+
+    let prompt = req.body.prompt;
+    console.log(prompt);
+    // return;
+    getAiSite(prompt).
+        then((resp) => {
+            htmlString = (resp['choices'][0]['message']['content']);
+            res.send(htmlToJson2(htmlString));
+        }).catch(err => {
+            res.send(JSON.stringify(err))
+        })
+})
+
+app.get("/editor", refreshSession, requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, "editor.html"));
 });
 
+
+app.post("/login", (req, res) => {
+    let body = "";
+
+    req.on("data", chunk => {
+        body += chunk;
+    });
+
+    req.on("end", () => {
+        console.log("RAW BODY:", body); // string
+
+        // If it is JSON, convert:
+        try {
+            const json = JSON.parse(body);
+
+            const user = {
+                email: json.email
+            }
+
+            login(json.email, json.password).then((resp) => {
+
+
+                if (resp.status == "success") {
+                    issueTokens(res, user);
+                }
+
+                res.send(JSON.stringify(resp));
+
+
+            })
+
+
+
+            console.log("PARSED JSON:", json);
+        } catch (e) {
+            console.log(e);
+            console.log("Body is not JSON");
+        }
+
+
+    });
+});
+
+
+app.post("/register", (req, res) => {
+    let body = "";
+
+    req.on("data", chunk => {
+        body += chunk;
+    });
+
+    req.on("end", () => {
+        console.log("RAW BODY:", body); // string
+
+        // If it is JSON, convert:
+        try {
+            const json = JSON.parse(body);
+
+            registerUser(json.firstName, json.lastName, json.email, json.password).then(resp => {
+                console.log(resp);
+                if (resp.status == "success") {
+
+                    const user = {
+                        email: json.email
+                    }
+
+                    issueTokens(res, user)
+                    res.send(JSON.stringify({ status: "success", message: "Email verified successfully", user: { email: json.email } }));
+                    return;
+                }
+                else {
+                    res.send({
+                        status: "unknown error",
+                        user: "admin",
+                    });
+                }
+            })
+
+            console.log("PARSED JSON:", json);
+        } catch (e) {
+            console.log(e);
+            console.log("Body is not JSON");
+            res.send({
+                status: "error",
+                user: "admin",
+                error: e
+            });
+        }
+
+
+
+
+    });
+});
+
+app.post("/otpverific", (req, res) => {
+    let body = "";
+
+    req.on("data", chunk => {
+        body += chunk;
+    });
+
+    req.on("end", () => {
+        console.log("RAW BODY:", body); // string
+
+        // If it is JSON, convert:
+        try {
+            const json = JSON.parse(body);
+
+            otpVerific(json.email, json.otp).then(resp => {
+                res.send(JSON.stringify(resp));
+            })
+
+
+            console.log("PARSED JSON:", json);
+        } catch (e) {
+            console.log(e);
+            console.log("Body is not JSON");
+            res.send({
+                status: "error",
+                user: "admin",
+                error: e
+            });
+        }
+
+
+
+
+    });
+});
+
+
+
+app.get("/logout", (req, res) => {
+    const cookies = req.cookies;
+    for (let cookieName in cookies) {
+        res.clearCookie(cookieName);
+    }
+    res.send(JSON.stringify({ status: "success" }));
+})
+
+
+
+
+
+
+// sendMail("pshychicexcusealpha@gmail.com", "Hello", "This is a test email.");
 
 
 let port = process.env.port || 9600;
