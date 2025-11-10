@@ -785,7 +785,7 @@ app.get("/sitescollection", refreshSession, requireAuth, (req, res) => {
 
 })
 
-app.get("/sitebypageid", refreshSession, requireAuth, (req, res) => {
+app.get("/sitebypageid", (req, res) => {
     console.log(req.query);
     let pageId = req.query.pageId;
 
